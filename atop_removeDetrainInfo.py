@@ -145,40 +145,9 @@ if args.classifiers[0] == 'nb':
     #print clf
 
 clf.fit(x_train, y_train)
-y_label = clf.predict(x_test)
 #print type(y_label)
 #print type(y_test)
 #print y_label
-
-
-################################################################################################################################
-# results summary
-y1_label = [] 
-for i in range (len(y_label)):
-	y1_label.append( clf.classes_.tolist().index(str(y_label[i])))
-
-rs = dict()
-f1 = dict()
-fpr = dict()
-tpr = dict()
-roc_auc = dict()
-for i in range(len(clf.classes_)):
-	fpr[i], tpr[i], _ = roc_curve(y1_test, y1_label, pos_label=i)
-	roc_auc[i] = auc(fpr[i], tpr[i])
-	rs[i]=recall_score(y1_test, y1_label,average='macro',  pos_label=i)  
-	f1[i]=f1_score(y1_test, y1_label, average='macro', pos_label=i)  
-'''
-print '\tfpr\ttpr\tauc\trecall\tf1 '
-for i in range(len(clf.classes_)):
-	print '{}\t{:.4f}\t{:.4f}\t{:.4f}\t{:.4f}\t{:.4f}'.format(clf.classes_[i],fpr[i].mean(),tpr[i].mean(), roc_auc[i], rs[i],f1[i])
-'''
-
-count = 0 
-for i in range (len(y_label)):
-	if y_label[i] == y_test[i]:
-		count += 1
-d = float(count)/float(len(y_label))
-
 ################################################################################################################################
 # write results to file
 
@@ -204,18 +173,7 @@ with open(args.out_file[0],"w") as f:
 	f.write("\n")				
 	f.write(temp)
 	f.write("\n")
-	f.write("=========================Summary================================\n")
-	f.write("\n")
-	f.write("Correctly Classified Instances :\t%d\t%0.4f%%\n" %(count,d*100))
-	f.write("Incorrectly Classified Instances :\t%d\t%0.4f%%\n" %(len(y_label) - count,(1-d)*100))
-	f.write("Total number of Instances :\t\t%d\n" %(len(y_label)))
-	f.write("\n")
-	f.write("=========================Detail=================================\n")
-	f.write('\tfpr\ttpr\tauc\trecall\tf1\n ')
-	for i in range(len(clf.classes_)):
-		f.write('{}\t{:.4f}\t{:.4f}\t{:.4f}\t{:.4f}\t{:.4f}\n'.format(clf.classes_[i],fpr[i].mean(),tpr[i].mean(), roc_auc[i], rs[i],f1[i]))
-	f.write("\n")
-	f.write("\n")
+	
 f.close()
 
 

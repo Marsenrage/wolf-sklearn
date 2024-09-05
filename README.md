@@ -1,2 +1,3 @@
-# wolf-sklearn
-used for sklearn part of the wilf project
+# CS 691 - Intelligent Robotics
+
+## Simulation Environment 

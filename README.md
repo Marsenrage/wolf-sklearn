@@ -10,12 +10,11 @@ The environment inclues 3 folders:
 
 ## How to Use 
 
-1.Download the whole folder
+1. Download the whole folder
 
-2.Enter folder robots_env and run text.py file, the simulation windows shoud pop up. 
+2. Enter folder robots_env and run text.py file, the simulation windows shoud pop up. 
   1. The environment developped in python 3.9, gym 0.26.2 and pybullet 3.26, other packages such as numpy and pandas also requried.
-     
-3. You can drag the toggle bar to contorl the robot.
+  2. You can drag the toggle bar to contorl the robot.
 
 
 
